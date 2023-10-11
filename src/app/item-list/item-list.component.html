@@ -1,0 +1,25 @@
+<div class="item-list-container">
+    <h1>Item-List</h1>
+    <input [(ngModel)]="newItem" placeholder="Add a new item">
+    <button (click)="addItem()">Add</button>
+  
+    <ul>
+      <li *ngFor="let item of items; let i = index">
+        <div class="item">
+          <span class="item-number">{{ i + 1 }}</span>
+          <ng-container *ngIf="editingIndex !== i; else editMode">
+            {{ item }}
+          </ng-container>
+          <ng-template #editMode>
+            <input [(ngModel)]="editedItem" class="edit-input">
+            <button (click)="saveItem()">Save</button>
+          </ng-template>
+          <div class="item-buttons">
+            <button (click)="editItem(i)">Edit</button>
+            <button (click)="removeItem(i)">Remove</button>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  
